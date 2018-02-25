@@ -6,7 +6,6 @@ import java.util.LinkedList;
 
 public class Game {
 	private SystemSettingsDAO systemSettingsDAO = new SystemSettingsDAO();
-	private final GameStateDAO gameStateDAO;
 	ArrayList players = new ArrayList();
     int[] places = new int[6];
     int[] purses  = new int[6];
@@ -23,7 +22,6 @@ public class Game {
 
 	public  Game(PlayersAutenticator playersAutenticator){
 		this.playersAutenticator = playersAutenticator;
-		this.gameStateDAO = new GameStateDAO();
 		int numberOfQuestions = systemSettingsDAO.getNumberOfQuestions();
 		for (int i = 0; i < numberOfQuestions; i++) {
 			popQuestions.addLast("Pop Question " + i);
@@ -93,7 +91,6 @@ public class Game {
 			System.out.println("The category is " + currentCategory());
 			askQuestion();
 		}
-		gameStateDAO.save(players, places, purses, inPenaltyBox);
 	}
 
 	private void askQuestion() {

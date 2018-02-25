@@ -1,8 +1,5 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import net.spy.memcached.MemcachedClient;
-import net.spy.memcached.internal.OperationFuture;
-
 import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,14 +8,10 @@ import java.util.HashMap;
  * Created by itzik on 1/7/2016.
  */
 public class WinnersList {
-    private final MemcachedClient memcachedClient;
+    private final HashMap memcachedClient;
 
     private WinnersList() {
-        try {
-            memcachedClient = new MemcachedClient();
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
+        memcachedClient = new HashMap();
     }
 
     private static WinnersList instance;
@@ -32,9 +25,9 @@ public class WinnersList {
 
     public void add(String player) {
         if (memcachedClient.get(player) == null) {
-            memcachedClient.set(player, 0, 0);
+            memcachedClient.put(player, 0);
         }
-        memcachedClient.set(player, 0, ((Integer) memcachedClient.get(player)) + 1);
+        memcachedClient.put(player, ((Integer) memcachedClient.get(player)) + 1);
     }
 
     public int getWinnings(String player) {
