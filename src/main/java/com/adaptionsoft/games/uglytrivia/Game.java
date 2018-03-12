@@ -31,6 +31,17 @@ public class Game {
     	}
     }
 
+	public int getPlaceofPlayer(int playerIndex) {
+		if (playerIndex < 0) 
+		{
+			throw new IllegalArgumentException("playerIndex cannot be negative");
+		}
+		if (playerIndex >= places.length) {
+			throw new IllegalArgumentException("playerIndex cannot be greater than " + places.length);
+		}
+		return places[playerIndex];
+	}
+	
 	public String createRockQuestion(int index){
 		return "Rock Question " + index;
 	}
