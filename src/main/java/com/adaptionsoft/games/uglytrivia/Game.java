@@ -18,9 +18,9 @@ public class Game {
     
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
-	private PlayersAutenticator playersAutenticator;
+	private IPlayersAuthenticator playersAutenticator;
 
-	public  Game(PlayersAutenticator playersAutenticator){
+	public  Game(IPlayersAuthenticator playersAutenticator){
 		this.playersAutenticator = playersAutenticator;
 		int numberOfQuestions = systemSettingsDAO.getNumberOfQuestions();
 		for (int i = 0; i < numberOfQuestions; i++) {
