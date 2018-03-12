@@ -21,7 +21,8 @@ public class SystemSettingsDAO {
                     "jdbc:mysql://localhost:3306/",
                     connectionProps);
         } catch (Throwable ex) {
-            throw new RuntimeException(ex);
+        	numberOfQuestions = 20;
+            //throw new RuntimeException(ex);
         }
 
     }

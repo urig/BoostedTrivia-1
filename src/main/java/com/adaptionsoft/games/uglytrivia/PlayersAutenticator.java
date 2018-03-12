@@ -5,10 +5,10 @@ package com.adaptionsoft.games.uglytrivia;
  */
 public final class PlayersAutenticator {
     public PlayersAutenticator() {
-        throw new RuntimeException("I am trying to connect a remote server - you have to bypass me...");
+        //throw new RuntimeException("I am trying to connect a remote server - you have to bypass me...");
     }
 
     public boolean authenticate(String playerName) {
-        return false;
+        return true;
     }
 }
