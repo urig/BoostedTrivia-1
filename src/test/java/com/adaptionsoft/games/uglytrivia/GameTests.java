@@ -10,7 +10,7 @@ import org.mockito.Mock;
 public class GameTests {
 
 	@Test
-	public void roll_playerRolls1_placeIs1() {
+	public void roll_playerRolls6and6and1_placeIs1() {
 		// Arrange
 		IPlayersAuthenticator playersAuthenticator = mock(IPlayersAuthenticator.class);
 		when(playersAuthenticator.authenticate("foo")).thenReturn(true);
@@ -18,6 +18,8 @@ public class GameTests {
 		target.add("foo");
 		
 		// Act
+		target.roll(6);
+		target.roll(6);
 		target.roll(1);
 		
 		// Assert
