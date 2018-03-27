@@ -12,6 +12,7 @@ public class SystemSettingsDAO {
 
     public SystemSettingsDAO() {
         try {
+        	/*
             Connection conn = null;
             Properties connectionProps = new Properties();
             connectionProps.put("user", "myuser");
@@ -20,6 +21,8 @@ public class SystemSettingsDAO {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/",
                     connectionProps);
+             */
+        	numberOfQuestions = 20;
         } catch (Throwable ex) {
             throw new RuntimeException(ex);
         }
