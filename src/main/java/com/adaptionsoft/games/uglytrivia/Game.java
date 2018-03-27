@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Game {
+	private static final int BOARD_SIZE = 12;
 	private SystemSettingsDAO systemSettingsDAO = new SystemSettingsDAO();
 	ArrayList players = new ArrayList();
-    int[] places = new int[6];
+    protected int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
     
@@ -57,7 +58,7 @@ public class Game {
 	public int howManyPlayers() {
 		return players.size();
 	}
-
+	
 	public void roll(int roll) {
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
@@ -65,32 +66,32 @@ public class Game {
 		if (inPenaltyBox[currentPlayer]) {
 			if (roll % 2 != 0) {
 				isGettingOutOfPenaltyBox = true;
-				
 				System.out.println(players.get(currentPlayer) + " is getting out of the penalty box");
-				places[currentPlayer] = places[currentPlayer] + roll;
-				if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-				
-				System.out.println(players.get(currentPlayer) 
-						+ "'s new location is " 
-						+ places[currentPlayer]);
-				System.out.println("The category is " + currentCategory());
-				askQuestion();
+				playNextTurn(roll);
 			} else {
 				System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
 				isGettingOutOfPenaltyBox = false;
 				}
 			
 		} else {
-		
-			places[currentPlayer] = places[currentPlayer] + roll;
-			if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
-			
-			System.out.println(players.get(currentPlayer) 
-					+ "'s new location is " 
-					+ places[currentPlayer]);
-			System.out.println("The category is " + currentCategory());
-			askQuestion();
+			playNextTurn(roll);
 		}
+	}
+
+	private void playNextTurn(int roll) {
+		movePlayer(roll);
+		
+		System.out.println(players.get(currentPlayer) 
+				+ "'s new location is " 
+				+ places[currentPlayer]);
+		System.out.println("The category is " + currentCategory());
+		
+		askQuestion();
+	}
+
+	private void movePlayer(int roll) {
+		places[currentPlayer] = places[currentPlayer] + roll;
+		if (places[currentPlayer] > (BOARD_SIZE-1)) places[currentPlayer] = places[currentPlayer] - BOARD_SIZE;
 	}
 
 	private void askQuestion() {
